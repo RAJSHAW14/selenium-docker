@@ -1,14 +1,10 @@
 package org.raj.tests.flightreservation;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.raj.pages.flight.flightreservation.*;
 import org.raj.tests.BaseTest;
 import org.raj.tests.flightreservation.model.FlightReservationTestData;
 import org.raj.tests.util.JsonUtil;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;

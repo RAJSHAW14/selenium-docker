@@ -1,15 +1,11 @@
 package org.raj.tests.vendorportal;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.raj.pages.vendorportal.DashboardPage;
 import org.raj.pages.vendorportal.LoginPage;
 import org.raj.tests.BaseTest;
 import org.raj.tests.util.JsonUtil;
 import org.raj.tests.vendorportal.model.VendorPortalTestData;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;

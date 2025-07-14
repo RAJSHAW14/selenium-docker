@@ -3,7 +3,6 @@ package org.raj.pages.flight.flightreservation;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.raj.pages.AbstractPage;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
