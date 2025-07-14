@@ -4,25 +4,22 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.raj.pages.flight.flightreservation.*;
+import org.raj.tests.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class FlightReservationTest {
-    private WebDriver driver;
+public class FlightReservationTest extends BaseTest {
     private String expectedPrice;
     private String noOfPassengers;
 
     @BeforeTest
     @Parameters({"noOfPassengers","expectedPrice"})
-    public void setDriver(String noOfPassengers, String expectedPrice){
+    public void setParameter(String noOfPassengers, String expectedPrice){
         this.noOfPassengers = noOfPassengers;
         this.expectedPrice = expectedPrice;
-        WebDriverManager.edgedriver().setup();
-        this.driver = new EdgeDriver();
-        driver.manage().window().maximize();
     }
 
     @Test
@@ -64,10 +61,5 @@ public class FlightReservationTest {
         FlightConfirmationPage flightConfirmationPage = new FlightConfirmationPage(driver);
         Assert.assertTrue(flightConfirmationPage.isAt());
         Assert.assertEquals(flightConfirmationPage.getPrice(),expectedPrice);
-    }
-
-    @AfterTest
-    public void tearDown(){
-        driver.quit();
     }
 }

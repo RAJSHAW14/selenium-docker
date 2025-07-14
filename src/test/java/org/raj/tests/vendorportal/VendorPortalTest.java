@@ -5,52 +5,49 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.raj.pages.vendorportal.DashboardPage;
 import org.raj.pages.vendorportal.LoginPage;
+import org.raj.tests.BaseTest;
+import org.raj.tests.util.JsonUtil;
+import org.raj.tests.vendorportal.model.VendorPortalTestData;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class VendorPortalTest {
-    private WebDriver driver;
+public class VendorPortalTest extends BaseTest {
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
+    private VendorPortalTestData testData;
 
     @BeforeTest
-    public void setDriver(){
-        WebDriverManager.edgedriver().setup();
-        this.driver = new EdgeDriver();
-        driver.manage().window().maximize();
+    @Parameters("testDataPath")
+    public void setPageObjects(String testDataPath){
         this.loginPage = new LoginPage(driver);
         this.dashboardPage = new DashboardPage(driver);
+        this.testData = JsonUtil.getTestData(testDataPath);
     }
 
     @Test
     public void loginTest(){
         loginPage.goTo("https://d1uh9e7cu07ukd.cloudfront.net/selenium-docker/vendor-app/index.html");
         Assert.assertTrue(loginPage.isAt());
-        loginPage.login("sam","sam");
+        loginPage.login(testData.username(),testData.password());
     }
 
     @Test(dependsOnMethods = "loginTest")
     public void dashboardTest(){
         Assert.assertTrue(dashboardPage.isAt());
-        Assert.assertEquals(dashboardPage.getMonthlyEarning(),"$40,000");
-        Assert.assertEquals(dashboardPage.getAnnualEarning(),"$215,000");
-        Assert.assertEquals(dashboardPage.getProfitMargin(),"50%");
-        Assert.assertEquals(dashboardPage.getAvailableMargin(),"18");
-        dashboardPage.searchOrderHistoryBy("adams");
-        Assert.assertEquals(dashboardPage.getSearchResultCount(), 8);
+        Assert.assertEquals(dashboardPage.getMonthlyEarning(),testData.monthlyEarning());
+        Assert.assertEquals(dashboardPage.getAnnualEarning(),testData.annualEarning());
+        Assert.assertEquals(dashboardPage.getProfitMargin(),testData.profitMargin());
+        Assert.assertEquals(dashboardPage.getAvailableMargin(),testData.availableMargin());
+        dashboardPage.searchOrderHistoryBy(testData.searchKeyword());
+        Assert.assertEquals(dashboardPage.getSearchResultCount(), testData.searchResultCount());
     }
 
     @Test(dependsOnMethods = "dashboardTest")
     public void logout(){
         dashboardPage.logout();
         Assert.assertTrue(loginPage.isAt());
-    }
-
-    @AfterTest
-    public void teardown(){
-        driver.quit();
     }
 }
