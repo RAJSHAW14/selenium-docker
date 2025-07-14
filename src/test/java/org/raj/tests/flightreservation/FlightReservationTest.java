@@ -2,19 +2,24 @@ package org.raj.tests.flightreservation;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.raj.pages.flight.flightreservation.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class FlightReservationTest {
     private WebDriver driver;
+    private String expectedPrice;
+    private String noOfPassengers;
 
     @BeforeTest
-    public void setDriver(){
+    @Parameters({"noOfPassengers","expectedPrice"})
+    public void setDriver(String noOfPassengers, String expectedPrice){
+        this.noOfPassengers = noOfPassengers;
+        this.expectedPrice = expectedPrice;
         WebDriverManager.edgedriver().setup();
         this.driver = new EdgeDriver();
         driver.manage().window().maximize();
@@ -42,7 +47,7 @@ public class FlightReservationTest {
     public void flightSearchTest(){
         FlightSearchPage flightSearchPage = new FlightSearchPage(driver);
         Assert.assertTrue(flightSearchPage.isAt());
-        flightSearchPage.selectPassengers("2");
+        flightSearchPage.selectPassengers(noOfPassengers);
         flightSearchPage.searchFlights();
     }
 
@@ -58,7 +63,7 @@ public class FlightReservationTest {
     public void flightReservationConfirmationTest(){
         FlightConfirmationPage flightConfirmationPage = new FlightConfirmationPage(driver);
         Assert.assertTrue(flightConfirmationPage.isAt());
-        Assert.assertEquals(flightConfirmationPage.getPrice(),"$1169 USD");
+        Assert.assertEquals(flightConfirmationPage.getPrice(),expectedPrice);
     }
 
     @AfterTest
