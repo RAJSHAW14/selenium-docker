@@ -18,11 +18,11 @@ public class RegistrationConfirmationPage extends AbstractPage {
 
     @Override
     public boolean isAt() {
-        this.wait.until(ExpectedConditions.visibilityOf(this.goToFlightSearchBtn));
-        return this.goToFlightSearchBtn.isDisplayed();
+        waitMethod(goToFlightSearchBtn);
+        return goToFlightSearchBtn.isDisplayed();
     }
 
     public void goToFlightSearch(){
-        goToFlightSearchBtn.click();
+        clickMethod(goToFlightSearchBtn);
     }
 }

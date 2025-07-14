@@ -26,7 +26,7 @@ public class FlightsSelectionPage extends AbstractPage {
     private WebElement confirmFlightBtn;
     @Override
     public boolean isAt() {
-        wait.until(ExpectedConditions.visibilityOf(confirmFlightBtn));
+        waitMethod(confirmFlightBtn);
         return confirmFlightBtn.isDisplayed();
     }
 
@@ -37,7 +37,7 @@ public class FlightsSelectionPage extends AbstractPage {
     }
 
     public void confirmFlight(){
-        this.confirmFlightBtn.click();
+        clickMethod(confirmFlightBtn);
     }
 
 

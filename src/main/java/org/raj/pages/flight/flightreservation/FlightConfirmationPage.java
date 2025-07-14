@@ -26,15 +26,15 @@ public class FlightConfirmationPage extends AbstractPage {
 
     @Override
     public boolean isAt() {
-        wait.until(ExpectedConditions.visibilityOf(totalPriceTxt));
+        waitMethod(totalPriceTxt);
         return totalPriceTxt.isDisplayed();
     }
     
     public String getPrice(){
-        String confirmation = this.flightConfirmationTxt.getText();
-        String price = this.totalPriceTxt.getText();
+        String confirmation = getTextMethod(flightConfirmationTxt);
+        String price = getTextMethod(totalPriceTxt);
         log.info("Flight Confirmation : {}",confirmation);
         log.info("Total Price : {}", price);
-        return this.totalPriceTxt.getText();
+        return getTextMethod(totalPriceTxt);
     }
 }

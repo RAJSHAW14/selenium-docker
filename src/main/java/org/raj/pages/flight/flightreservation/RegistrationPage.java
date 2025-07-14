@@ -42,7 +42,7 @@ public class RegistrationPage extends AbstractPage {
 
     @Override
     public boolean isAt() {
-        wait.until(ExpectedConditions.visibilityOf(firstNameInput));
+        waitMethod(firstNameInput);
         return firstNameInput.isDisplayed();
     }
 
@@ -51,22 +51,22 @@ public class RegistrationPage extends AbstractPage {
     }
 
     public void enterUserDetails(String firstName, String lastName){
-        firstNameInput.sendKeys(firstName);
-        lastNameInput.sendKeys(lastName);
+        inputTextMethod(firstNameInput, firstName);
+        inputTextMethod(lastNameInput, lastName);
     }
 
     public void enterUserCred(String email, String password){
-        emailInput.sendKeys(email);
-        passwordInput.sendKeys(password);
+        inputTextMethod(emailInput, email);
+        inputTextMethod(passwordInput, password);
     }
 
     public void enterAddress(String street, String city, String zip){
-        streetInput.sendKeys(street);
-        cityInput.sendKeys(city);
-        zipInput.sendKeys(zip);
+        inputTextMethod(streetInput, street);
+        inputTextMethod(cityInput, city);
+        inputTextMethod(zipInput, zip);
     }
 
     public void register(){
-        registerBtn.click();
+        clickMethod(registerBtn);
     }
 }

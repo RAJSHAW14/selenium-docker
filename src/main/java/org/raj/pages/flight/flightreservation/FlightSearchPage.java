@@ -20,7 +20,7 @@ public class FlightSearchPage extends AbstractPage {
     }
     @Override
     public boolean isAt() {
-        wait.until(ExpectedConditions.visibilityOf(passengersSelect));
+        waitMethod(passengersSelect);
         return passengersSelect.isDisplayed();
     }
 
@@ -30,6 +30,6 @@ public class FlightSearchPage extends AbstractPage {
     }
 
     public void searchFlights(){
-        searchFlightsBtn.click();
+        clickMethod(searchFlightsBtn);
     }
 }
