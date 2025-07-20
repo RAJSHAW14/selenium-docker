@@ -19,16 +19,31 @@ public class FlightConfirmationPage extends AbstractPage {
     @FindBy(xpath = "//form[@class='row g-3']//div[contains(text(),'Flight Confirmation')]/following-sibling::div/p")
     private WebElement flightConfirmationTxt;
 
+    /**
+     * Initializes the FlightConfirmationPage using the base constructor.
+     *
+     * @param driver WebDriver instance
+     */
     public FlightConfirmationPage(WebDriver driver){
         super(driver);
     }
 
+    /**
+     * Confirms the page is visible by checking total price element.
+     *
+     * @return true if confirmation page is loaded
+     */
     @Override
     public boolean isAt() {
         waitMethod(totalPriceTxt);
         return totalPriceTxt.isDisplayed();
     }
-    
+
+    /**
+     * Fetches and logs flight confirmation and price details.
+     *
+     * @return Final flight price text
+     */
     public String getPrice(){
         String confirmation = getTextMethod(flightConfirmationTxt);
         String price = getTextMethod(totalPriceTxt);
