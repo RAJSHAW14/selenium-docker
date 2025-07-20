@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.raj.pages.vendorportal.DashboardPage;
 import org.raj.pages.vendorportal.LoginPage;
 import org.raj.tests.BaseTest;
-import org.raj.tests.flightreservation.dataprovider.TestDataProviders;
 import org.raj.tests.vendorportal.dataprovider.VendorDataProviders;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -13,8 +12,6 @@ import org.testng.annotations.*;
 public class VendorPortalTest extends BaseTest{
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
-    //private VendorPortalTestData testData;
-    private JsonNode testData;
     private String username;
     private String password;
     private String monthlyEarning;
@@ -33,7 +30,8 @@ public class VendorPortalTest extends BaseTest{
     public void dashboardTest(String testJsonString){
         ObjectMapper mapper = new ObjectMapper();
         try {
-            testData = mapper.readTree(testJsonString);
+            //private VendorPortalTestData testData;
+            JsonNode testData = mapper.readTree(testJsonString);
             this.username = testData.has("username") ? testData.get("username").asText() : "N/A";
             this.password = testData.has("password") ? testData.get("password").asText() : "N/A";
             this.monthlyEarning = testData.has("monthlyEarning") ? testData.get("monthlyEarning").asText() : "N/A";

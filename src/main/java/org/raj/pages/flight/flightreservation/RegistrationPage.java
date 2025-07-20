@@ -25,9 +25,6 @@ public class RegistrationPage extends AbstractPage {
     @FindBy(name = "city")
     private WebElement cityInput;
 
-    @FindBy(id = "inputState")
-    private WebElement stateDrpDwn;
-
     @FindBy(name = "zip")
     private WebElement zipInput;
 

@@ -32,8 +32,7 @@ public class TestDataProviders {
                 }
             }
         } catch (IOException | GeneralSecurityException e) {
-            e.printStackTrace();
-            // Handle the exception appropriately, e.g., throw a RuntimeException or log it
+            System.out.println(e.getMessage());
         }
         return testData.iterator();
     }
@@ -62,7 +61,7 @@ public class TestDataProviders {
                 }
             }
         } catch (IOException | GeneralSecurityException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return testData.iterator();
     }

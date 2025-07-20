@@ -30,7 +30,7 @@ public class VendorDataProviders {
                 }
             }
         } catch (IOException | GeneralSecurityException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return testData.iterator();
     }

@@ -17,7 +17,6 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
@@ -128,7 +127,7 @@ public class GoogleSheetReader {
             String jsonData = getSheetDataAsJson(spreadsheetId, range);
             System.out.println(jsonData);
         } catch (IOException | GeneralSecurityException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }
